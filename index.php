@@ -19,7 +19,7 @@ function main(){
         serve_csv("ERROR: Not Google sheet code specified. Use '?u=' parameter");
     }
 
-    $sheet_code = preg_replace("/(\.\.)/","", $_GET["u"]);
+    $sheet_code = stripslashes(preg_replace("/(\.\.)/","", $_GET["u"]));
     // $sheet_code = $_GET["u"];
 
     // If we have a master file, serve that, but continuing fetching from
