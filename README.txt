@@ -1,5 +1,8 @@
 sheets-csv - serve google spreadsheets from your own server, which is
-usually faster.
+usually faster
+
+by Jake Kara
+jake@jakekara.com
 
 WHY
 	Google spreadsheets is a good backend for news apps, when you need
@@ -77,7 +80,7 @@ THE DATA FOLDER
 	 file is archived), in case you want to see the data changing over
 	 time or roll back to a previous version of the CSV.
 
-OVERRIDING RESULTS
+USAGE: OVERRIDING WITH A MASTER CSV
 
 	 The ./data/master folder allows you to override the spreadsheet
 	 completely.
@@ -93,16 +96,34 @@ OVERRIDING RESULTS
 	 ./data/master/BIG_STRING_OF_GIBBERISH-MASTER.csv
 
 	 As long as that file exists, it will always be served. The system
-	 will still try to update the cache in the background. 
+	 will still try to update the cache in the background.
 
-	
+USAGE: SAVING FEWER ARCHIVE COPIES
 
+	  Saving a copy of a spreadsheet each minute could lead to major
+	  wasting of disk space, but for our example, it's fine, at least
+	  on the night of an election.
 
-	 
-	 
+	  To change it so that it only stores an archive file each hour,
+	  day, month, etc, simple change the $TIME_FMT variable in conf.php
+	  to any valid time format that strftime will recognize. I have
+	  some examples in there.
 
-	
+	  NOTE: The current implemention overwrites files with the same
+	  timestamp, which does save disk space, but if the write cost is a
+	  problem for you, keep that in mind. I should make the program
+	  check if the file exist and don't bother overwriting it. 
 
-		
+USAGE: DON'T QUERY GOOGLE SO OFTEN
+
+       NOT IMPLEMENTED
+
+       I have a $TTL variable in the conf.php file, which is not
+       implemented. When implemented, it would throttle the cache updating
+       to queries that are at leaset $TTL seconds apart. I didn't implement
+       it because I wasn't sure about why the precision for filemtime() and
+       time() was different, and whether they differed based on the machine
+       they were running on -- so I couldn't reliably determine the "age"
+       of a file to test whether it was older than $TTL seconds.
 
 

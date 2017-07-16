@@ -1,8 +1,10 @@
 <?php
 
-/*
- * getter.php
- */
+// -------------------------------
+// getter.php - helper functions
+// to get CSVs from disk, from Google,
+// and to cache and serve them.
+// -------------------------------
 
 include "conf.php";
 
@@ -42,7 +44,10 @@ function get_sheet_url($sheet_code){
 }
 
 function time_str($unix_time){
-    return strftime("%Y-%m-%d-%H-%M", $unix_time);
+
+    global $TIME_FMT;
+    
+    return strftime($TIME_FMT, $unix_time);
 }
 
 function now_str(){

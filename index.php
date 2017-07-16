@@ -1,5 +1,13 @@
 <?php
 
+// --------------------------------------
+// index.php - main script for sheets-csv
+// to serve google sheets as CSVs from
+// your own server, reducing the load time
+// for your apps that still need a simple
+// spreadsheet backend for live data
+// --------------------------------------
+
 include "getter.php";
 include "csv.php";
 
