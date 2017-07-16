@@ -1,5 +1,9 @@
 <?
 
+// --------------------------------
+// csv.php - serve csv files
+// --------------------------------
+
 function serve_csv($contents){
     // this ob_ stuff is for buffering, so we can send the contents and
     // then keep doing stuff (updating the cache) ater the connection
